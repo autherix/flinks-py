@@ -14,7 +14,7 @@
     "include-js-files": true
   },
   "robofinder": {
-    "installation-path": "/tmp/robofinder/robofinder.py",
+    "installation-path": "./robofinder-py/robofinder.py",
     "delay": false
   }
 }

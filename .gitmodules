@@ -1,0 +1,3 @@
+[submodule "robofinder-py"]
+	path = robofinder-py
+	url = git@github.com:StoicTopG/robofinder-py.git
