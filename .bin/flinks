@@ -16,18 +16,18 @@ def LoadVenv():
         else:
             print('Virtual environment created.')
             # If there is a requirements.txt in the parent path, install the dependencies
-            requirements_txt = os.path.join(venv_parent_dir, 'requirements.txt')
-            if os.path.exists(requirements_txt):
-                source_cmd = f'source {os.path.join(venv_dir, "bin", "activate")}'
-                pyinstall_cmd = f'python3 -m pip install -r {requirements_txt}'
-                res = os.system(f'bash -c "{source_cmd} && {pyinstall_cmd} && deactivate"')
-                # res = os.system(f'{os.path.join(venv_dir, "bin", "python3")} 
-                if res != 0:
-                    print('Failed to install dependencies. requirements.txt may be corrupted or not accessible.')
-                    exit(1)
-            else:
-                print('requirements.txt not found or not accessible. Going forward...')
-                # exit(1)
+    requirements_txt = os.path.join(venv_parent_dir, 'requirements.txt')
+    if os.path.exists(requirements_txt):
+        source_cmd = f'source {os.path.join(venv_dir, "bin", "activate")} > /dev/null 2>&1'
+        pyinstall_cmd = f'python3 -m pip install -r {requirements_txt} > /dev/null 2>&1'
+        res = os.system(f'bash -c "{source_cmd} && {pyinstall_cmd} && deactivate > /dev/null 2>&1"')
+        # res = os.system(f'{os.path.join(venv_dir, "bin", "python3")} 
+        if res != 0:
+            print('Failed to install dependencies. requirements.txt may be corrupted or not accessible.')
+            exit(1)
+    else:
+        print('requirements.txt not found or not accessible. Going forward...')
+        # exit(1)
     
     # Try to activate the virtual environment
     os_join_path = os.path.join(venv_dir, 'bin', 'python3')
